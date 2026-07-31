@@ -2,7 +2,7 @@
 
 namespace App\Command\Dev;
 
-use App\Api\Console\Authorization\Scope;
+use Hyvor\Internal\CloudApi\Scope\RelayScope;
 use App\Entity\Type\DomainStatus;
 use App\Entity\Type\SendAttemptStatus;
 use App\Entity\Type\SendFeedbackType;
@@ -71,10 +71,10 @@ class DevSeedCommand extends Command
             'project' => $instance->getSystemProject(),
             'user_id' => 1,
             'scopes' => [
-                Scope::PROJECT_READ,
-                Scope::SENDS_READ,
-                Scope::DOMAINS_READ,
-                Scope::ANALYTICS_READ,
+                RelayScope::PROJECT_READ,
+                RelayScope::SENDS_READ,
+                RelayScope::DOMAINS_READ,
+                RelayScope::ANALYTICS_READ,
             ],
         ]);
 
@@ -124,7 +124,7 @@ class DevSeedCommand extends Command
         ProjectUserFactory::createOne([
             'project' => $project,
             'user_id' => 1,
-            'scopes' => Scope::all()
+            'scopes' => RelayScope::all()
         ]);
 
         ApiKeyFactory::createOne([

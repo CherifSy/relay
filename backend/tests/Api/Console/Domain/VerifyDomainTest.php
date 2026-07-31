@@ -2,7 +2,7 @@
 
 namespace App\Tests\Api\Console\Domain;
 
-use App\Api\Console\Authorization\Scope;
+use Hyvor\Internal\CloudApi\Scope\RelayScope;
 use App\Api\Console\Controller\DomainController;
 use App\Api\Console\Object\DomainObject;
 use App\Entity\Type\DomainStatus;
@@ -78,7 +78,7 @@ class VerifyDomainTest extends WebTestCase
             data: [
                 'id' => $domain->getId(),
             ],
-            scopes: [Scope::DOMAINS_WRITE]
+            scopes: [RelayScope::DOMAINS_WRITE]
         );
 
         $this->assertSame(Response::HTTP_OK, $response->getStatusCode());
@@ -129,7 +129,7 @@ class VerifyDomainTest extends WebTestCase
             data: [
                 'id' => $domain->getId(),
             ],
-            scopes: [Scope::DOMAINS_WRITE]
+            scopes: [RelayScope::DOMAINS_WRITE]
         );
 
         $this->assertSame(Response::HTTP_OK, $response->getStatusCode());
@@ -180,7 +180,7 @@ class VerifyDomainTest extends WebTestCase
             data: [
                 'domain' => $domain->getDomain(),
             ],
-            scopes: [Scope::DOMAINS_WRITE]
+            scopes: [RelayScope::DOMAINS_WRITE]
         );
 
         $this->assertSame(
@@ -212,7 +212,7 @@ class VerifyDomainTest extends WebTestCase
             data: [
                 'id' => $domain->getId(),
             ],
-            scopes: [Scope::DOMAINS_READ] // Wrong scope
+            scopes: [RelayScope::DOMAINS_READ] // Wrong scope
         );
 
         $this->assertSame(Response::HTTP_FORBIDDEN, $response->getStatusCode());
@@ -228,7 +228,7 @@ class VerifyDomainTest extends WebTestCase
             "POST",
             "/domains/verify",
             data: ['id' => 999999],
-            scopes: [Scope::DOMAINS_WRITE]
+            scopes: [RelayScope::DOMAINS_WRITE]
         );
 
         $this->assertSame(400, $response->getStatusCode());
@@ -254,7 +254,7 @@ class VerifyDomainTest extends WebTestCase
             data: [
                 'id' => $domain->getId(),
             ],
-            scopes: [Scope::DOMAINS_WRITE]
+            scopes: [RelayScope::DOMAINS_WRITE]
         );
 
         $this->assertResponseStatusCodeSame(400);
@@ -291,7 +291,7 @@ class VerifyDomainTest extends WebTestCase
             data: [
                 'id' => $domain->getId(),
             ],
-            scopes: [Scope::DOMAINS_WRITE]
+            scopes: [RelayScope::DOMAINS_WRITE]
         );
 
         $this->assertSame(Response::HTTP_OK, $response->getStatusCode());
@@ -326,7 +326,7 @@ class VerifyDomainTest extends WebTestCase
             data: [
                 'id' => $domain->getId(),
             ],
-            scopes: [Scope::DOMAINS_WRITE]
+            scopes: [RelayScope::DOMAINS_WRITE]
         );
 
         $this->assertSame(Response::HTTP_INTERNAL_SERVER_ERROR, $response->getStatusCode());
